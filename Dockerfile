@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y \
 
 # cache bust: 2
 RUN R -e "install.packages(c('remotes', 'plumber2', 'svglite', 'htmxr'))"
-
+RUN R -e "cat(paste(installed.packages()[,'Package'], collapse='\n'))"
 
 COPY . /app
 WORKDIR /app
