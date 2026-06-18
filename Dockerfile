@@ -6,8 +6,9 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev
 
 # cache bust: 2
-RUN R -e "install.packages(c('remotes', 'plumber2', 'svglite', 'htmxr'))"
-RUN R -e "cat(paste(installed.packages()[,'Package'], collapse='\n'))"
+RUN R -e "install.packages('plumber2', dependencies=TRUE)"
+RUN R -e "install.packages(c('remotes', 'svglite', 'htmxr'), dependencies=TRUE)"
+RUN R -e "library(plumber2); cat('plumber2 OK\n')"
 
 COPY . /app
 WORKDIR /app
