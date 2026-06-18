@@ -5,7 +5,8 @@ RUN apt-get update && apt-get install -y \
     libcurl4-openssl-dev \
     libxml2-dev
 
-RUN R -e "install.packages(c('remotes', 'svglite', 'plumber2', 'htmxr'))"
+    RUN R -e "remotes::install_github('https://github.com/posit-dev/plumber2')"
+RUN R -e "install.packages(c('remotes', 'svglite', 'htmxr'))"
 
 COPY . /app
 WORKDIR /app
