@@ -5,8 +5,6 @@ RUN apt-get update && apt-get install -y \
     libcurl4-openssl-dev \
     libxml2-dev
 
-RUN R -e "install.packages('nanonext', type='binary')"
-RUN R -e "install.packages('mirai', type='binary')"
 RUN R -e "install.packages(c('remotes', 'svglite', 'plumber2', 'htmxr'))"
 
 COPY . /app
