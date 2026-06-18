@@ -1,22 +1,11 @@
-FROM rocker/r-ver:4.4.3
+FROM rocker/verse:4.4.3
 
-RUN apt-get update && apt-get install -y \
-    libssl-dev \
-    libcurl4-openssl-dev \
-    libxml2-dev \
-    libfontconfig1-dev \
-    zlib1g-dev \
-    libsodium-dev \
-    libharfbuzz-dev \
-    libfribidi-dev \
-    cmake \
-    libmbedtls-dev \
-    cargo \
-    rustc
-
-# cache bust: 2
-RUN R -e "options(repos = c(CRAN = 'https://cran.r-project.org')); install.packages(c('svglite', 'plumber2', 'htmxr'), dependencies=TRUE)"
-
+# cache bust: 10
+RUN R -e " \
+  options(repos = c(CRAN = 'https://packagemanager.posit.co/cran/__linux__/noble/latest')); \
+  install.packages(c( 'svglite', 'plumber2', 'htmxr'), \
+  dependencies = TRUE, type = 'binary') \
+"
 
 COPY . /app
 WORKDIR /app
