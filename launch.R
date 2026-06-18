@@ -1,15 +1,8 @@
-install.packages("plumber2")
-install.packages("remotes")
-remotes::install_version("mirai", version = "2.6.1")
-install.packages("htmxr")
-
-library(htmxr)
-htmxr::hx_run_example("hello")
-
-
 library(plumber2)
+library(htmxr)
 
-pr <- plumber2::api("api.R", doc_type = "") |>
-  hx_serve_assets()
+port <- as.integer(Sys.getenv("PORT", 8080))
 
-pr$ignite(port = port, block = TRUE)
+plumber2::api("api.R", doc_type = "") |>
+  hx_serve_assets() |>
+  (\(pr) pr$ignite(host = "0.0.0.0", port = port, block = TRUE))()

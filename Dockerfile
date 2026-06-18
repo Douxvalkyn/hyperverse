@@ -5,15 +5,12 @@ RUN apt-get update && apt-get install -y \
     libcurl4-openssl-dev \
     libxml2-dev
 
+RUN R -e "install.packages('nanonext', type='binary')"
+RUN R -e "install.packages('mirai', type='binary')"
 RUN R -e "install.packages(c('remotes', 'svglite', 'plumber2', 'htmxr'))"
 
 COPY . /app
 WORKDIR /app
 
 EXPOSE 8080
-CMD ["Rscript", "-e", "\
-  library(plumber2); \
-  library(htmxr); \
-  plumber2::api('api.R', doc_type='') |> \
-  hx_serve_assets() |> \
-  (\\(pr) pr$ignite(host='0.0.0.0', port=8080,
+CMD ["Rscript", "launch.R"]
