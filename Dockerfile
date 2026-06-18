@@ -6,9 +6,8 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev
 
 # cache bust: 2
-RUN R -e "install.packages('plumber2', dependencies=TRUE)"
-RUN R -e "install.packages(c('remotes', 'svglite', 'htmxr'), dependencies=TRUE)"
-RUN R -e "library(plumber2); cat('plumber2 OK\n')"
+RUN R -e "options(repos = c(CRAN = 'https://cran.r-project.org')); install.packages(c('svglite', 'plumber2', 'htmxr'), dependencies=TRUE)"
+
 
 COPY . /app
 WORKDIR /app
