@@ -1,3 +1,4 @@
+library(plumber2)
 library(svglite)
 library(htmxr)
 
