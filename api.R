@@ -51,7 +51,7 @@ function() {
           class = "card-body",
           tags$h1(
             class = "card-title border-bottom border-primary border-3 pb-2",
-            "Old Faithful Geyser Data"
+            "Old Faithful Geyser Data by Insee Nantes"
           ),
           tags$div(
             class = "row mt-4",
