@@ -40,7 +40,7 @@ generate_plot <- function(bins = 30) {
 function() {
   hx_page(
     hx_head(
-      title = "Old Faithful Geyser Data",
+      title = "Insee Nantes",
       bootstrap_css
     ),
     tags$div(
